@@ -1,0 +1,137 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background-color: #262626;
+}
+
+h2 {
+  color: #DA050B;
+  text-align: center;
+}
+
+p {
+  color: white;
+}
+
+form {
+  color: white;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  padding: 5px;
+}
+
+input {
+  padding: 5px;
+  margin-top: 5px;
+  width: 250px;
+}
+
+select {
+  width: 250px;
+  height: 24px;
+}
+
+button {
+  width: 150px;
+  padding: 10px;
+  margin: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: auto;
+}
+
+#crudForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+
+}
+
+#crudButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#App {
+  margin-top: 15px;
+}
+
+#navBar li {
+  display: inline-block;
+  padding: 15px 15px 2px 15px;
+  color: #DA050B;
+  cursor: pointer;
+  font-size: 1.25em;
+  border-bottom: thin groove #CCC;
+  border-radius: 7px;
+}
+
+#navBar li:hover
+{
+  color: #AA050A;
+}
+
+#listResults {
+  width: 100%;
+  background-color: #222;
+  color: white;
+  border: 1px solid #444;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#listResults thead {
+  text-align: left;
+}
+
+#listResults th {
+  padding: 15px;
+  background-color: #AA050A;
+  color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+#listResults tr:nth-child(odd){
+  background-color: #282828;
+  color: white;
+}
+#listResults td {
+  padding: 15px;
+}
+
+#listResults a {
+  text-decoration:  none;
+  color: #DA050B;
+  font-size: 1.15em;
+}
+
+#listResults a:hover {
+  color: #AA050A;
+}
+
+#footer {
+  width: 100%;
+  padding: 15px;
+  color: #AA050A;
+  text-align: center;
+}
+
+#footer a {
+  text-decoration: none;
+  color: #AA050A;
+}

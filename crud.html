@@ -1,0 +1,61 @@
+<html>
+<link rel="stylesheet" href="src/css/main.css" />
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+
+
+<body>
+  <div class="container">
+    <img src="src/images/header.jpg" width="100%" />
+    <div id="crudForm">
+      <form>
+        <label for="author">Author</label>
+        <input id="author" type="text" value=""/>
+        <br / />
+
+        <label for="title">Title</label>
+        <input id="title" type="text" value=""/>
+        <br / />
+
+        <label for="score">Score</label>
+        <input id="score" type="number" value=""/>
+        <br / />
+
+        <label for="url">URL</label>
+        <input id="url" type="text" value=""/>
+        <br / />
+
+        <label for="certified">Certified</label>
+        <select id=certified>
+          <option value="False">False</option>
+          <option value="True">True</option>
+        </select>
+
+        <br / />
+
+        <label for="date">Date</label>
+        <input id="date" type="date" value=""/>
+        <br /><br />
+        <div id="crudButton">
+          <button type="button" onclick="
+          AddStory(document.getElementById('author').value,
+                   document.getElementById('title').value,
+                   document.getElementById('score').value,
+                   document.getElementById('url').value,
+                   document.getElementById('certified').value,
+                   document.getElementById('date').value)"
+          >Submit</button>
+          <button type="button" onclick="ClearBoxes()">Clear</button>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="src/js/firebase.js"></script>
+<script src="src/js/crud.js"></script>
+</html>
