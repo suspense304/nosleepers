@@ -9,6 +9,16 @@ body {
   background-color: #262626;
 }
 
+
+
+h1 {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2em;
+}
+
 h2 {
   color: #DA050B;
   text-align: center;
@@ -16,6 +26,11 @@ h2 {
 
 p {
   color: white;
+  font-size: 1.15em;
+}
+
+code {
+  font-size: 1.2em;
 }
 
 form {
@@ -51,6 +66,14 @@ button {
   margin: auto;
 }
 
+.authorLink {
+  cursor: pointer;
+}
+
+#logo {
+  width: 100%;
+}
+
 #crudForm {
   display: flex;
   justify-content: center;
@@ -69,6 +92,10 @@ button {
 
 #App {
   margin-top: 15px;
+}
+
+#navBar {
+  background-color: #151515;
 }
 
 #navBar li {
@@ -129,6 +156,7 @@ button {
   padding: 15px;
   color: #AA050A;
   text-align: center;
+  background-color: #151515;
 }
 
 #footer a {

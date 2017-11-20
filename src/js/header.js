@@ -2,7 +2,6 @@ Header();
 function Header(){
   const view = document.getElementById('navBar');
   const template = `
-  <img src="src/images/header.jpg" width="100%" />
   <div style="text-align: center;">
     <h1 style="color: white;">TheNoSleepers.com</h1>
     <ul style="text-align: center; width: 100%;">

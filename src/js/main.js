@@ -1,20 +1,28 @@
 MainPage();
+Logo();
 
 function PopulateMainList(){
-  var table = document.getElementById("listResults");
+
   var stories = [];
-  var leadsRef = database.ref().child("Authors").limitToLast(10).once("value").then(function(authorSnapshot)
+  var leadsRef = database.ref().child("Authors").limitToLast(5).once("value").then(function(authorSnapshot)
   {
     authorSnapshot.forEach(function(child) {
+      stories.push({"Author": child.val().author,
+                    "Title": child.val().title,
+                    "URL": child.val().url,
+                    "Score": Math.round(child.val().score, 0)});
+      })
+      for(var i = 0; i < 5; i++)
+      {
         var template = `
         <tr>
-        <td>` + child.val().author + `</td>
-        <td><a href="` + child.val().url + `">` + child.val().title + `</a></td>
-        <td>` + child.val().score + `</td>
+        <td><span class="authorLink" onclick=AuthorPage("` + stories[i]["Author"] +`")>` + stories[i]["Author"] + `</span></td>
+        <td><a href="` + stories[i]["URL"]+ `">` + stories[i]["Title"] + `</a></td>
+        <td>` + stories[i]["Score"] + `</td>
         </tr>
         `
         $("#listResults").append(template);
-      })
+      }
    });
 }
 
@@ -31,15 +39,53 @@ function TopSleepers(){
 }
 
 function BotTopSleepers(){
+  var storyList = [];
   const view = document.getElementById('App');
-  const template = `<h2>Coming Soon!</h2><br />
-  <div>
-    <p>
-      The bot doesn't discriminate. Stories that have received the highest scores from the bot will appear here.<br />
+  var table = document.getElementById("listResults");
+  view.innerHTML = `<table id="listResults">
+    <thead>
+      <th>Author</th>
+      <th>Title</th>
+      <th>Score</th>
+    </thead>
+  </table>`;
+  var storyRef = database.ref().child("Authors").once("value").then(function(authorSnapshot)
+  {
+        authorSnapshot.forEach(function(child) {
+        storyList.push({"Author": child.val().author,
+                      "Title": child.val().title,
+                      "URL": child.val().url,
+                      "Score": Math.round(child.val().score, 0)});
+      })
+      console.log(storyList);
+      storyList.sort(compare);
+      for(var i = 0; i < 10; i++)
+      {
+        var template = `
+        <tr>
+        <td><span class="authorLink" onclick=AuthorPage("` + storyList[i]["Author"] +`")>` + storyList[i]["Author"] + `</span></td>
+        <td><a href="` + storyList[i]["URL"]+ `">` + storyList[i]["Title"] + `</a></td>
+        <td>` + storyList[i]["Score"] + `</td>
+        </tr>
+        `
+        $("#listResults").append(template);
+      }
+   });
+}
 
-    </p>
-  </div>`;
-  view.innerHTML = template;
+
+
+function compare(a, b) {
+  const storyA = a.Score;
+  const storyB = b.Score;
+
+  let comparison = 0;
+  if (storyA < storyB) {
+    comparison = 1;
+  } else if (storyA > storyB) {
+    comparison = -1;
+  }
+  return comparison;
 }
 
 function TopAuthors(){
@@ -80,9 +126,9 @@ function RandomCorner(){
     var selected = Math.floor(Math.random() * count);
           var template = `
           <tr>
-          <td>` + stories[selected].author + `</td>
+          <td><span class="authorLink" onclick=AuthorPage("` + stories[selected].author +`")>` + stories[selected].author + `</span></td>
           <td><a href="` + stories[selected].url + `">` + stories[selected].title + `</a></td>
-          <td>` + stories[selected].score + `</td>
+          <td>` + Math.round(stories[selected].score, 0) + `</td>
           </tr>
           `
           $("#listResults").append(template);
@@ -100,4 +146,43 @@ function MainPage(){
   </table>`
   view.innerHTML = template;
   PopulateMainList();
+}
+
+function AuthorPage(author){
+  var storyList = [];
+  const view = document.getElementById('App');
+  var table = document.getElementById("listResults");
+  view.innerHTML = `<table id="listResults">
+    <thead>
+      <th>Author</th>
+      <th>Title</th>
+      <th>Score</th>
+    </thead>
+  </table>`;
+  var storyRef = database.ref().child("Authors").once("value").then(function(authorSnapshot)
+  {
+        authorSnapshot.forEach(function(child) {
+        if(child.val().author == author){
+          storyList.push({"Author": child.val().author,
+                        "Title": child.val().title,
+                        "URL": child.val().url,
+                        "Score": Math.round(child.val().score, 0)});
+        }
+
+      })
+      console.log(storyList);
+      storyList.sort(compare);
+      for(var i = 0; i < 10; i++)
+      {
+        var template = `
+        <tr>
+        <td><span class="authorLink" onclick=AuthorPage("` + storyList[i]["Author"] +`")>` + storyList[i]["Author"] + `</span></td>
+        <td><a href="` + storyList[i]["URL"]+ `">` + storyList[i]["Title"] + `</a></td>
+        <td>` + storyList[i]["Score"] + `</td>
+        </tr>
+        `
+        $("#listResults").append(template);
+      }
+   });
+
 }
